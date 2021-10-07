@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import Fade from 'react-reveal/Fade';
+import { Fade, withReveal } from 'react-reveal';
 
 export const Section = ({ title, description, leftBtnText, rightBtnText, imageBg }) => {
     return (
@@ -39,13 +39,13 @@ const Wrapper = styled.div`
     background-position: center;
     mix-blend-mode: darken;
     align-items: center; // horizontal allignment
-`
+`;
 
 const ItemText = styled.div`
-    padding-top: 15vh;
+    padding-top: 30vh;
     text-align: center;
     opacity: 0.8;
-    margin-bottom: 4vh;
+    margin-bottom: 1vh;
 `
 
 const ButtonGroup = styled.div`

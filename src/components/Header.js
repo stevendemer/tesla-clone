@@ -58,12 +58,14 @@ const Wrapper = styled.div`
     font-weight: bold;
     padding: 1em 0;
     font-size: 4vh;
-    background: black;
+    background: transparent;
     justify-content: space-between;
     background-blend-mode: multiply;
     opacity: 0.8;
     overflow: auto;
     z-index: 1;
+    position: fixed;
+    width: 100vw;
 `
 
 const Menu = styled.div`
@@ -83,24 +85,22 @@ const Menu = styled.div`
 
     a {
         font-weight: 600;
-        color: white;
+        color: black;
         align-items: center;
         padding: 0.8vh 1vh;
         margin-left: 30px;
         text-transform: uppercase;
         flex-wrap: nowrap;
         font-size: 1.5vh;        
-        transition: border-color 0.7s ease-out;
+        transition: border-color 0.6s ease-in;
         width: 4vw;
         border-radius: 300px;
-        border-color: black;
-        border: 2px solid black;
+        border-color: white;
+        border: 2px solid transparent;
         opacity: 0.6;
 
         &:hover {
-            border-color: white;
-            color: white;
-            background: black;
+            border-color: black;
             opacity: 0.8;
         }
     }
@@ -112,12 +112,12 @@ const RightMenu = styled.div`
     align-items: center;
     flex: 1;
     justify-content: flex-end;
-    padding-right: 2vh;
+    padding-right: 10vh;
 
     a {
-        font-weight: 600;
+        font-weight: 800;
         margin-right: 10px;
-        color: white;
+        color: black;
         margin-left: 30px;
         text-transform: uppercase;
         flex-wrap: nowrap;
@@ -142,16 +142,18 @@ const CustomMenu = styled(MenuIcon)`
         width: 170px;
         height: 50vh;
     }
+
 `
 
 const BurgerNav = styled.div`
 
-    position: absolute;
+    position: fixed;
     font-size: 2vh;
     top:0;
     bottom:0;
     right:0;
-    background-color: inherit;
+    background: white;
+    /* background-color: inherit; */
     border-radius: 55px;
     width: 15vw;
     z-index: 10;
@@ -164,6 +166,19 @@ const BurgerNav = styled.div`
     color: white;
     align-items: baseline;
     transform: ${props => props.show ? "translateX(0)" : "translateX(100)"} ;
+    margin-top: 8vh;
+    animation-name: mymove;
+    animation-duration: 1s;
+
+    @keyframes mymove {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
 
     li {
         padding: 15px 0;
@@ -173,13 +188,14 @@ const BurgerNav = styled.div`
         padding-bottom: 3px;
         display: flex;
         justify-content: center;
-        border-bottom: 2px solid white;
+        border-bottom: 4px solid black;
         border-radius: 0 10px 0 0;
         margin-bottom: 4vh;
+        padding-top: 5vh;
 
         a {
-            font-weight: 800;
-            color: white;
+            font-weight: bolder;
+            color: black;
         }
     }
 `
@@ -187,6 +203,8 @@ const BurgerNav = styled.div`
 const CustomClose = styled(ClearIcon)`
 
     cursor: pointer;
+    width: 10vh;
+    color: black;
 
 `
 
