@@ -37,6 +37,7 @@ const Wrapper = styled.div`
     padding-bottom: 20vh;
     position: relative;
     background-position: center;
+    mix-blend-mode: darken;
     align-items: center; // horizontal allignment
 `
 

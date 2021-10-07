@@ -7,6 +7,30 @@ export const Header = () => {
 
     const [burgerStatus, setStatus] = useState(false); 
 
+    const handleClick = () => {
+        console.log("Burger should have closed by now !");
+        setStatus(false);
+    }
+
+
+    // Conditional rendering
+    const renderedBurger = () => {
+        if (burgerStatus) {
+            return (
+            <BurgerNav show={burgerStatus}>
+                <CloseWrapper>
+                    <CustomClose onClick={handleClick} />
+                </CloseWrapper>
+                <li><a href="#">Existing inventory</a></li>
+                <li><a href="#">Used inventory</a></li>
+                <li><a href="#">Trade in</a></li>
+                <li><a href="#">Cybertruck</a></li>
+                <li><a href="#">Roadster</a></li>
+            </BurgerNav>);
+        }
+    }
+
+
     return (
         <Wrapper>
             <a>
@@ -21,18 +45,9 @@ export const Header = () => {
             <RightMenu>
                 <a href="#">Shop</a>
                 <a href="#">Tesla Account</a>
-                <CustomMenu onClick={() => setStatus(true)} />
+                {burgerStatus ? " " : <CustomMenu onClick={() => setStatus(true)} />}
             </RightMenu>
-            <BurgerNav show={burgerStatus}>
-                <CloseWrapper>
-                    <CustomClose onClick={()=>setStatus(false)}/>
-                </CloseWrapper>
-                <li><a href="#">Existing inventory</a></li>
-                <li><a href="#">Used inventory</a></li>
-                <li><a href="#">Trade in</a></li>
-                <li><a href="#">Cybertruck</a></li>
-                <li><a href="#">Roadster</a></li>
-            </BurgerNav>
+            {renderedBurger()}
         </Wrapper>
     );
 }
@@ -43,8 +58,7 @@ const Wrapper = styled.div`
     font-weight: bold;
     padding: 1em 0;
     font-size: 4vh;
-    background: rgb(245,238,230);
-    background: linear-gradient(90deg, rgba(245,238,230,1) 0%, rgba(236,233,228,1) 0%, rgba(210,215,218,1) 100%); 
+    background: black;
     justify-content: space-between;
     background-blend-mode: multiply;
     opacity: 0.8;
@@ -54,7 +68,7 @@ const Wrapper = styled.div`
 
 const Menu = styled.div`
     display: flex;
-    align-items: baseline;
+    align-items: center;
     flex: 1;
     justify-content: flex-end;
     padding-right: 2vh;
@@ -63,21 +77,39 @@ const Menu = styled.div`
         display: none;
     }
 
+    @media(max-width: 820px) {
+        display: none;
+    }
+
     a {
         font-weight: 600;
-        padding: 0 1rem;
+        color: white;
+        align-items: center;
+        padding: 0.8vh 1vh;
         margin-left: 30px;
         text-transform: uppercase;
         flex-wrap: nowrap;
-        font-size: 1.5vh;
-    }
+        font-size: 1.5vh;        
+        transition: border-color 0.7s ease-out;
+        width: 4vw;
+        border-radius: 300px;
+        border-color: black;
+        border: 2px solid black;
+        opacity: 0.6;
 
+        &:hover {
+            border-color: white;
+            color: white;
+            background: black;
+            opacity: 0.8;
+        }
+    }
 `
 
 const RightMenu = styled.div`
 
     display: flex;
-    align-items: baseline;
+    align-items: center;
     flex: 1;
     justify-content: flex-end;
     padding-right: 2vh;
@@ -85,11 +117,18 @@ const RightMenu = styled.div`
     a {
         font-weight: 600;
         margin-right: 10px;
+        color: white;
         margin-left: 30px;
         text-transform: uppercase;
         flex-wrap: nowrap;
         font-size: 1.5vh;
         margin-right: 30px;
+        opacity: 0.6;
+        transition: opacity 0.5s ease-in;
+
+        &:hover {
+            opacity: 0.9;
+        }
     }
 
 `
@@ -107,22 +146,22 @@ const CustomMenu = styled(MenuIcon)`
 
 const BurgerNav = styled.div`
 
-    display: flex;
+    position: absolute;
     font-size: 2vh;
     top:0;
     bottom:0;
     right:0;
-    background-color: white;
+    background-color: inherit;
     border-radius: 55px;
-    width: 300px;
+    width: 15vw;
     z-index: 10;
     list-style: none;
     padding: 20px;
     flex-direction: column;
     text-align: start;
     padding-top: 0;
-    height: 100vh;
-    margin-left: 30px;
+    margin: 0 10px 20px;
+    color: white;
     align-items: baseline;
     transform: ${props => props.show ? "translateX(0)" : "translateX(100)"} ;
 
@@ -131,24 +170,23 @@ const BurgerNav = styled.div`
         height: 5vh
         padding-left: 1em;
         margin-top: 15px;
-        border-radius: 300px;        
+        padding-bottom: 3px;
         display: flex;
         justify-content: center;
-        border-bottom: 2px solid black;
+        border-bottom: 2px solid white;
         border-radius: 0 10px 0 0;
-        padding-bottom:2px;
-
-        
+        margin-bottom: 4vh;
 
         a {
             font-weight: 800;
-            color: black;
+            color: white;
         }
     }
-
 `
 
 const CustomClose = styled(ClearIcon)`
+
+    cursor: pointer;
 
 `
 
