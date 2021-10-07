@@ -8,7 +8,6 @@ export const Header = () => {
     const [burgerStatus, setStatus] = useState(false); 
 
     const handleClick = () => {
-        console.log("Burger should have closed by now !");
         setStatus(false);
     }
 
@@ -169,6 +168,7 @@ const BurgerNav = styled.div`
     margin-top: 8vh;
     animation-name: mymove;
     animation-duration: 1s;
+    height: fit-content;
 
     @keyframes mymove {
         from {
@@ -205,6 +205,17 @@ const CustomClose = styled(ClearIcon)`
     cursor: pointer;
     width: 10vh;
     color: black;
+    animation-name: myclose;
+    animation-duration: 1s;
+
+    @keyframes myclose {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 
 `
 
