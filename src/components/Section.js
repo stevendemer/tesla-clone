@@ -35,6 +35,7 @@ const Wrapper = styled.div`
     justify-content: space-between; // vertical allignment
     background-image: ${props => `url("/images/${props.backgroundImg}")`};
     padding-bottom: 20vh;
+    position: relative;
     background-position: center;
     align-items: center; // horizontal allignment
 `

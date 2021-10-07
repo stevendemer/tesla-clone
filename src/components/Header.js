@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/CloseIcon';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export const Header = () => {
+
+    const [burgerStatus, setStatus] = useState(false); 
+
     return (
         <Wrapper>
             <a>
-                <img style={{ width: '20vh', marginLeft: '10px'}} src="/images/tesla_logo.svg" alt="Logo" />
+                <img style={{ width: '20vh', marginLeft: '10px', alignItems: 'baseline', display:'flex'}} src="/images/tesla_logo.svg" alt="Logo" />
             </a>
             <Menu>
                 <a href="#">Model S</a>
@@ -18,9 +21,12 @@ export const Header = () => {
             <RightMenu>
                 <a href="#">Shop</a>
                 <a href="#">Tesla Account</a>
-                <CustomMenu />
+                <CustomMenu onClick={() => setStatus(true)} />
             </RightMenu>
-            <BurgerNav>
+            <BurgerNav show={burgerStatus}>
+                <CloseWrapper>
+                    <CustomClose onClick={()=>setStatus(false)}/>
+                </CloseWrapper>
                 <li><a href="#">Existing inventory</a></li>
                 <li><a href="#">Used inventory</a></li>
                 <li><a href="#">Trade in</a></li>
@@ -48,7 +54,7 @@ const Wrapper = styled.div`
 
 const Menu = styled.div`
     display: flex;
-    align-items: center;
+    align-items: baseline;
     flex: 1;
     justify-content: flex-end;
     padding-right: 2vh;
@@ -71,7 +77,10 @@ const Menu = styled.div`
 const RightMenu = styled.div`
 
     display: flex;
-    align-items: center;
+    align-items: baseline;
+    flex: 1;
+    justify-content: flex-end;
+    padding-right: 2vh;
 
     a {
         font-weight: 600;
@@ -99,34 +108,55 @@ const CustomMenu = styled(MenuIcon)`
 const BurgerNav = styled.div`
 
     display: flex;
-    position: fixed;
     font-size: 2vh;
     top:0;
     bottom:0;
     right:0;
     background-color: white;
+    border-radius: 55px;
     width: 300px;
     z-index: 10;
     list-style: none;
     padding: 20px;
     flex-direction: column;
     text-align: start;
+    padding-top: 0;
+    height: 100vh;
+    margin-left: 30px;
+    align-items: baseline;
+    transform: ${props => props.show ? "translateX(0)" : "translateX(100)"} ;
 
     li {
         padding: 15px 0;
-        border-bottom: 1px solid rgba(0, 0, 0, .2);
+        height: 5vh
+        padding-left: 1em;
+        margin-top: 15px;
+        border-radius: 300px;        
+        display: flex;
+        justify-content: center;
+        border-bottom: 2px solid black;
+        border-radius: 0 10px 0 0;
+        padding-bottom:2px;
+
+        
 
         a {
-            font-weight: 600;
+            font-weight: 800;
+            color: black;
         }
     }
 
 `
 
-const CustomClosed = styled(CloseIcon)`
+const CustomClose = styled(ClearIcon)`
 
-        
+`
 
 
+const CloseWrapper = styled.div`
 
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 20px;
+    margin-right: 20px;
 `
